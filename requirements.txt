@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-multipart
+pillow==9.5.0
+numpy
+easyocr==1.7.0          
+# paddlepaddle  # las antigua por si las moscas
+# paddleocr
