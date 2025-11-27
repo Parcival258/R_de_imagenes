@@ -8,7 +8,10 @@ class ServicioOCR:
         self.reader = easyocr.Reader(['es'], gpu=False)
 
     def extraer_texto(self, imagen_bytes: bytes) -> str:
-        img = Image.open(io.BytesIO(imagen_bytes)).convert("RGB")
-        img_np = np.array(img)
-        result = self.reader.readtext(img_np, detail=0, paragraph=True)
-        return " ".join(result).lower()
+        try:
+            img = Image.open(io.BytesIO(imagen_bytes)).convert("RGB")
+            img_np = np.array(img)
+            result = self.reader.readtext(img_np, detail=0, paragraph=True)
+            return " ".join(result).lower()
+        except Exception as e:
+            raise ValueError(f"Error al extraer texto de la imagen: {str(e)}")
